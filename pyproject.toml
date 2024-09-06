@@ -7,7 +7,8 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "~3.9.13"
+python = "~3.12.0"
+chrome-trex = {path = "chrome-trex-rush"}
 
 [tool.poetry.group.dev.dependencies]
 notebook = "^7.1.2"
