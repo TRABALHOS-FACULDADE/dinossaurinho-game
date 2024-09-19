@@ -3,10 +3,10 @@ import numpy as np
 from chrome_trex import MultiDinoGame, Dino, ACTION_UP, ACTION_FORWARD, ACTION_DOWN
 
 # Configurações do algoritmo genético
-POPULATION_SIZE = 50
-GENERATIONS = 15
-MUTATION_RATE = 0.3
-FPS = 60
+POPULATION_SIZE = 100
+GENERATIONS = 50
+MUTATION_RATE = 0.6
+FPS = 300
 BIAS = 10
 
 game = MultiDinoGame(POPULATION_SIZE, FPS)
@@ -14,7 +14,7 @@ game = MultiDinoGame(POPULATION_SIZE, FPS)
 class Dinossauro:
     def __init__(self, gameDino: Dino) -> None:
         self.gameDino = gameDino
-        self.pesos = [rnd.randint(-1000, 1000) for _ in range(11)]
+        self.pesos = [rnd.randint(-1000, 1000) for _ in range(10)]
     
     def tomarDecisao(self, state: list) -> int:
         avg = np.average(state, weights=self.pesos)
@@ -27,11 +27,6 @@ class Dinossauro:
             if prob <= MUTATION_RATE:
                 self.pesos[i] = rnd.randint(-1000, 1000)
 
-
-def softmax(x: list) -> np.ndarray:
-    exp_x = np.exp(x)
-    return exp_x / np.sum(exp_x)
-
 def selecao(dinos: list[Dinossauro]):
     return max(dinos, key=lambda d: d.gameDino.score)
 
@@ -40,6 +35,7 @@ def generate_dinos(population, gameDinos: list[Dino]):
 
 def run():
     dinos = generate_dinos(POPULATION_SIZE, game.alive_players)
+    dino_campeao = Dinossauro(Dino(44, 47))
     
     for _ in range(GENERATIONS):
     
@@ -48,14 +44,15 @@ def run():
             game.step(actions)
 
         melhor_dino = selecao(dinos)
+        dino_campeao = melhor_dino if melhor_dino.gameDino.score > dino_campeao.gameDino.score else dino_campeao
 
         # Repovoando jogo
 
-        novos_dinos = [melhor_dino]
+        novos_dinos = [dino_campeao]
 
         for _ in range(POPULATION_SIZE-1):
-            melhor_dino.mutate()
-            novos_dinos.append(melhor_dino)
+            dino_campeao.mutate()
+            novos_dinos.append(dino_campeao)
 
 
         game.reset()

@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "~3.12.0"
 numpy = "^2.1.1"
-chrome-trex = {git = "https://github.com/ArielMAJ/chrome-trex-rush", rev = "0.3.0"}
+chrome-trex = {git = "https://github.com/ArielMAJ/chrome-trex-rush", rev = "0.4.0"}
 
 [tool.poetry.group.dev.dependencies]
 notebook = "^7.1.2"
