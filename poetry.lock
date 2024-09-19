@@ -394,20 +394,22 @@ files = [
 ]
 
 [[package]]
-name = "chrome_trex"
-version = "0.0.1"
-description = "A library with the chrome trex game"
+name = "chrome-trex"
+version = "0.3.0"
+description = ""
 optional = false
-python-versions = "*"
+python-versions = "^3.9"
 files = []
 develop = false
 
 [package.dependencies]
-pygame = "*"
+pygame = "^2.6.0"
 
 [package.source]
-type = "directory"
-url = "chrome-trex-rush"
+type = "git"
+url = "https://github.com/ArielMAJ/chrome-trex-rush"
+reference = "0.3.0"
+resolved_reference = "61e7fd350afc6a0d2154293bab974bdd5adfe9c7"
 
 [[package]]
 name = "colorama"
@@ -2266,4 +2268,4 @@ test = ["websockets"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12.0"
-content-hash = "be39f0cab3f55f9b7147662d673853f95005f1b4d418d52513f928baad320529"
+content-hash = "9eb373340a34b4f33defd06b147b994bcb1f687e497139f413cc32ba270d954b"
