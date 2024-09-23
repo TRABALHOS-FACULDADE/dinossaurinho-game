@@ -1,13 +1,13 @@
 import random as rnd
 import numpy as np
 from chrome_trex import MultiDinoGame, Dino, ACTION_UP, ACTION_FORWARD, ACTION_DOWN
+import json
 
 # Configurações do algoritmo genético
-POPULATION_SIZE = 100
-GENERATIONS = 50
+POPULATION_SIZE = 300
+GENERATIONS = 200
 MUTATION_RATE = 0.6
-FPS = 300
-BIAS = 10
+FPS = 400
 
 game = MultiDinoGame(POPULATION_SIZE, FPS)
 
@@ -27,6 +27,22 @@ class Dinossauro:
             if prob <= MUTATION_RATE:
                 self.pesos[i] = rnd.randint(-1000, 1000)
 
+    def getPesos(self):
+        return self.pesos
+
+def dinoToJson(dino: Dinossauro, gen: int):
+    with open('dinos.json', 'r') as file:
+        lines = file.readlines()
+        text = ''.join(lines)
+        dinos: list = json.loads(text)
+    
+    dino_obj = {'geracao': gen, 'pesos_melhor_individuo': dino.getPesos()}
+    dinos.append(dino_obj)
+
+    with open('dinos.json', 'w') as file:
+        file.write(json.dumps(dinos))
+
+
 def selecao(dinos: list[Dinossauro]):
     return max(dinos, key=lambda d: d.gameDino.score)
 
@@ -37,7 +53,7 @@ def run():
     dinos = generate_dinos(POPULATION_SIZE, game.alive_players)
     dino_campeao = Dinossauro(Dino(44, 47))
     
-    for _ in range(GENERATIONS):
+    for gen in range(GENERATIONS):
     
         while len(game.alive_players) > 0:
             actions = [dino.tomarDecisao(state) for dino, state in zip(dinos, game.get_state())]
@@ -56,6 +72,7 @@ def run():
 
 
         game.reset()
+        dinoToJson(dino_campeao, gen)
 
         for k in range(len(game.alive_players)):
             novos_dinos[k].gameDino = game.alive_players[k]
