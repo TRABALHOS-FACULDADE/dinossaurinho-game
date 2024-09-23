@@ -1,5 +1,7 @@
 # MultiDinoGame
 
+[VÍDEO - APRESENTAÇÃO DO PROJETO PELA EQUIPE](https://drive.google.com/file/d/1Uc8_tSXfleVqW9XzpAxOqBNMkDgPkEDc/view?usp=sharing)
+
 ## Discentes
 
 - Antônio César Nunes de Azevedo Filho
