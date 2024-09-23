@@ -81,31 +81,19 @@ MUTATION_RATE = 0.6
 FPS = 400
 ```
 
-<div align='center'>
-<video width="320" height="240" controls>
-  <source src="assets/geracao_inicial.mp4" type="video/mp4">
-</video>
-</div>
+![](assets/geracao_inicial.gif)
 
 <br>
 
 ### Exemplo de avanço de gerações
 
-<div align='center'>
-<video width="320" height="240" controls>
-  <source src="assets/momento_avancado.mp4" type="video/mp4">
-</video>
-</div>
+![](assets/momento_avancado.gif)
 
 <br>
 
 ### Exemplo de melhor indivíduo
 
-<div align='center'>
-<video width="320" height="240" controls>
-  <source src="assets/melhor_individuo.mp4" type="video/mp4">
-</video>
-</div>
+![](assets/melhor_individuo.gif)
 
 ```json
 {
